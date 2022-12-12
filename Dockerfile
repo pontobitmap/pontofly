@@ -25,4 +25,4 @@ COPY . /app/
 # expose port 8000
 EXPOSE 8000
 
-CMD ["gunicorn", "--bind", ":8000", "--workers", "2", "core.wsgi:application"]
+CMD ["gunicorn", "--bind", ":8000", "--workers", "2", "pontobitmap.wsgi:application"]
