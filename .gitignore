@@ -255,4 +255,11 @@ modules.xml
 # Sonarlint plugin
 .idea/sonarlint
 
+__pycache__
+dist
+docs
+env
+logs
+
+
 # End of https://www.toptal.com/developers/gitignore/api/pycharm+all,django
