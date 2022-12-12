@@ -1,4 +1,6 @@
-*.venv
-.python-version
-__pycache__/
-pyenv.cfg
+.env
+*.env
+.vscode
+.sqlite3
+venv
+\venv
