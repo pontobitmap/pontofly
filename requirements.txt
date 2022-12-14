@@ -5,3 +5,4 @@ dj-database-url
 gunicorn
 pillow
 whitenoise
+django-simple-deploy          # Added by simple_deploy command.
