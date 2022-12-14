@@ -1,28 +1,25 @@
-# pull official base image
-FROM python:3.9.6-alpine
+ARG PYTHON_VERSION=3.9
 
-# set work directory
-WORKDIR /usr/src/app
+FROM python:${PYTHON_VERSION}
 
-# set environment variables
-ENV PYTHONDONTWRITEBYTECODE 1
-ENV PYTHONUNBUFFERED 1
+RUN apt-get update && apt-get install -y \
+    python3-pip \
+    python3-venv \
+    python3-dev \
+    python3-setuptools \
+    python3-wheel
 
-# create the app directory - and switch to it
 RUN mkdir -p /app
 WORKDIR /app
 
-# install dependencies
-COPY requirements.txt /tmp/requirements.txt
-RUN set -ex && \
-    pip install --upgrade pip && \
-    pip install -r /tmp/requirements.txt && \
-    rm -rf /root/.cache/
+COPY requirements.txt .
+RUN pip install -r requirements.txt
 
-# copy project
-COPY . /app/
+COPY . .
 
-# expose port 8000
-EXPOSE 8000
+RUN python manage.py collectstatic --noinput
 
-CMD ["gunicorn", "--bind", ":8000", "--workers", "2", "pontobitmap.wsgi:application"]
+EXPOSE 8080
+
+# replace APP_NAME with module name
+CMD ["gunicorn", "--bind", ":8080", "--workers", "2", "pontobitmap.wsgi"]
