@@ -260,7 +260,7 @@ dist
 docs
 env
 logs
-
+.env
 
 # End of https://www.toptal.com/developers/gitignore/api/pycharm+all,django
 # Ignore logs from simple_deploy.
